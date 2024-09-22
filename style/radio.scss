@@ -1,0 +1,39 @@
+@import 'misc';
+
+.slider {
+    background: $background;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 75%;
+    height: 25px;
+    outline: none;
+    border: $border;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 40px;
+        background: $foreground;
+        cursor: pointer;
+        border-radius: 0px;
+        border: none;
+    }
+
+    &::-moz-range-thumb {
+        width: 10px;
+        height: 40px;
+        background: $foreground;
+        cursor: pointer;
+        border-radius: 0px;
+        border: none;
+    }
+}
+
+.radio_controls {
+	flex-basis: 0;
+	text-align: center;
+	padding: 0px;
+	background-color: $background;
+	width: 15vw;
+}

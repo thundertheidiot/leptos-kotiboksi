@@ -1,0 +1,14 @@
+@import 'misc';
+
+.textpart {
+    flex-shrink: 1;
+    flex-grow: 1;
+    border: $border;
+    padding: 10px;
+    background-color: $background;
+    margin-right: 10px;
+}
+
+.nopad {
+    padding: 0px;
+}

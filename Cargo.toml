@@ -1,0 +1,64 @@
+[package]
+name = "kotiboksi"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+actix-files = { version = "0.6", optional = true }
+actix-web = { version = "4", optional = true, features = ["macros"] }
+console_error_panic_hook = "0.1"
+http = { version = "1.0.0", optional = true }
+leptos = { version = "0.6" }
+leptos_meta = { version = "0.6" }
+leptos_actix = { version = "0.6", optional = true }
+leptos_router = { version = "0.6" }
+wasm-bindgen = "=0.2.93"
+turf = "0.9.3"
+cfg-if = "1.0.0"
+
+[features]
+csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
+hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
+ssr = [
+  "dep:actix-files",
+  "dep:actix-web",
+  "dep:leptos_actix",
+  "leptos/ssr",
+  "leptos_meta/ssr",
+  "leptos_router/ssr",
+]
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = "abort"
+
+
+[package.metadata.turf.class_names]
+template = "<original_name>"
+
+[package.metadata.leptos]
+output-name = "kotiboksi"
+site-root = "target/site"
+site-pkg-dir = "pkg"
+assets-dir = "static"
+watch-additional-files = ["style", "style/global"]
+
+site-addr = "127.0.0.1:3000"
+reload-port = 3001
+browserquery = "defaults"
+env = "PROD"
+
+bin-target-triple = "x86_64-unknown-linux-gnu"
+bin-features = ["ssr"]
+bin-default-features = false
+
+lib-features = ["hydrate"]
+lib-default-features = false
+
+lib-profile-release = "wasm-release"

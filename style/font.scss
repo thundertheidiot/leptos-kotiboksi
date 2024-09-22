@@ -1,0 +1,12 @@
+$font: ibmvga8x16;
+
+@font-face {
+    font-family: $font;
+    src: url('/static/WebPlus_IBM_VGA_8x16.woff');
+    font-style: normal;
+}
+
+@mixin font() {
+    font-family: $font;
+    font-weight: normal;
+}

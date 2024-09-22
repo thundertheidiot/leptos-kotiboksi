@@ -1,0 +1,160 @@
+@import 'font';
+@import 'misc';
+@import 'textpart';
+@import 'guestbook';
+@import 'nav';
+@import 'radio';
+
+$width-2x: 2560px;
+$width-1x: 1920px;
+
+@mixin bg-size($size) {
+    // background-size: 2011px * $size 1337px * $size;
+    // background-size: $size00% $size00%;
+    background-size: cover;
+}
+
+@mixin font-size($multiplier) {
+    // @media screen and (max-width: $width-1x) {
+    //     font-size: 24px;
+    // }
+
+    // @media screen and (max-width: $width-2x) {
+    //     font-size: 32px;
+    // }
+
+    font-size: 16px * $multiplier;
+}
+
+body {
+    background-color: $background;
+    color: $foreground;
+    font-family: $font;
+
+    background-image: url('/static/img/bg/jarvi.webp');
+    // background-size: 2011px * 2 1337px * 2;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    // &:before {
+        image-rendering: pixelated;
+    // }
+
+    @media screen and (max-width: $width-1x) {
+        @include bg-size(1);
+    }
+
+    @media screen and (max-width: $width-2x) {
+        @include bg-size(2);
+    }
+
+    @media screen and (min-width: $width-2x + 1) {
+        @include bg-size(3);
+    }
+
+    @include font-size(1);
+}
+
+strong {
+    color: $bright-red;
+    @include font();
+}
+
+em, i {
+    color: $foreground;
+}
+
+table, th, td {
+    border: $border;
+}
+
+h1 {
+    @include font();
+    @include font-size(2);
+    text-decoration: underline;
+    color: $foreground;
+    // text-align: center;
+}
+
+h2 {
+    @include font();
+    @include font-size(1);
+    text-decoration: underline;
+    color: $foreground;
+}
+
+h4 {
+    text-decoration: underline;
+    @include font();
+}
+
+
+a {
+    color: $bright-blue;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+button {
+    background-color: $background;
+    color: $bright-blue;
+    padding: 10px;
+    margin: 5px;
+    @include font();
+    @include font-size(1);
+    border: $border;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+button.navbutton {
+    @extend button;
+    display: block;
+    margin: auto 5px auto 5px;
+    width: calc(100% - 10px);
+}
+
+input {
+    width: 100%;
+    @include font();
+    @include font-size(1);
+    border: $border;
+    color: $foreground;
+    background: $background;
+    padding: 5px;
+}
+
+code {
+    @include font();
+    border: $border;
+    width: fit-content;
+    white-space: pre-wrap;
+    display: block;
+    padding: 0px 5px 0px 5px;
+    background: $background;
+}
+
+.main_container {
+    display: inline-flex;
+    width: 100%;
+}
+
+.maintext_container {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+	height: 100%;
+}
+
+.center {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

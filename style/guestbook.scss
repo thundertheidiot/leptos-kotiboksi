@@ -1,0 +1,38 @@
+@import 'misc';
+@import 'textpart';
+
+.guestbook_textinput {
+    width: 50%;
+}
+
+.guestbook_submitinput {
+    width: calc(50% + 14px);
+}
+
+.guestbook_container {
+    flex-shrink: 1;
+    flex-grow: 1;
+    padding: 0px;
+    text-align: center;
+}
+.guestbook_siren {
+	color: $foreground;
+	animation: siren_anim 1s linear infinite;
+}
+
+.guestbook_siren_bg {
+	background-color: $red;
+	animation: siren_bg_anim 1s linear infinite;
+}
+
+@keyframes siren_anim {
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes siren_bg_anim {
+	50% {
+		background-color: $background;
+	}
+}
