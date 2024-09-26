@@ -1,11 +1,6 @@
 pub mod app;
 pub mod css;
-
-cfg_if::cfg_if! {
-    if #[cfg(feature = "csr")] {
-    pub mod game;
-    }
-}
+pub mod db;
 
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]

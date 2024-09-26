@@ -4,8 +4,11 @@ use leptos_router::*;
 
 use crate::css::*;
 
+mod guestbook;
 mod home;
 mod nav;
+mod radio;
+use self::guestbook::Guestbook;
 use self::home::HomePage;
 use self::nav::Navbar;
 
@@ -21,15 +24,13 @@ pub fn App() -> impl IntoView {
 
         <div class=ClassName::MAIN_CONTAINER>
 
-            <Navbar/>
-
             <Router>
-                <main>
-                    <Routes>
-                        <Route path="" view=HomePage/>
-                        <Route path="/*any" view=NotFound/>
-                    </Routes>
-                </main>
+                <Navbar/>
+                <Routes>
+                    <Route path="" view=HomePage/>
+                    <Route path="/guestbook" view=Guestbook/>
+                    <Route path="/*any" view=NotFound/>
+                </Routes>
             </Router>
         </div>
     }
@@ -53,8 +54,15 @@ fn NotFound() -> impl IntoView {
     }
 
     view! {
-        <div class=ClassName::TEXTPART>
-            <h1>"Not Found"</h1>
+        <div class=ClassName::TEXTPART style="text-align: center">
+            <h1>"404 - Not Found"</h1>
+
+            {move || {
+                let breaks = vec![view! { <br/> }; 10];
+                breaks.into_view()
+            }}
+
+            <p>"Keep looking"</p>
         </div>
     }
 }

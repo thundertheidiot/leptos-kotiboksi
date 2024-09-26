@@ -11,13 +11,14 @@ actix-files = { version = "0.6", optional = true }
 actix-web = { version = "4", optional = true, features = ["macros"] }
 console_error_panic_hook = "0.1"
 http = { version = "1.0.0", optional = true }
-leptos = { version = "0.6" }
+leptos = { version = "0.6", features = ["nightly"] }
 leptos_meta = { version = "0.6" }
 leptos_actix = { version = "0.6", optional = true }
 leptos_router = { version = "0.6" }
 wasm-bindgen = "=0.2.93"
 turf = "0.9.3"
 cfg-if = "1.0.0"
+sqlx = { version = "0.8.2", features = ["runtime-tokio", "sqlite"], optional = true }
 
 [features]
 csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
@@ -29,6 +30,7 @@ ssr = [
   "leptos/ssr",
   "leptos_meta/ssr",
   "leptos_router/ssr",
+  "sqlx"
 ]
 
 [profile.wasm-release]

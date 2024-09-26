@@ -1,3 +1,4 @@
+use crate::app::radio::Radio;
 use crate::css::ClassName;
 use leptos::*;
 
@@ -9,9 +10,11 @@ pub fn Navbar() -> impl IntoView {
                 "Home"
             </a>
 
-            <a href="/guestbook/" class=ClassName::NAV_LINK>
+            <a href="/guestbook" class=ClassName::NAV_LINK>
                 "Guestbook"
             </a>
+
+            <Radio/>
         </nav>
     }
 }
