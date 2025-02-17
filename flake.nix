@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     rust-overlay.url = "github:oxalica/rust-overlay";
     crane.url = "github:ipetkov/crane";
     flake-utils.url = "github:numtide/flake-utils";
@@ -28,7 +28,7 @@
 
         cargoLeptos = craneLib.buildPackage rec {
           pname = "cargo-leptos";
-          version = "0.2.20";
+          version = "0.2.26";
 
           cargoArtifacts = craneLib.buildDepsOnly {
             inherit src pname version;
@@ -40,10 +40,25 @@
           src = pkgs.fetchFromGitHub {
             owner = "leptos-rs";
             repo = pname;
-            rev = "5443add6d7ea901d58fe13ef226c5acf5e362060";
-            hash = "sha256-BEfEaSlQYtNN/fT5ZmjYw78w9sGvqlTDhRwZxRWsU2w=";
+            rev = "v${version}";
+            hash = "sha256-v1gNH3pq5db/swsk79nEzgtR4jy3f/xHs4QaLnVcVYU=";
           };
         };
+
+        # leptosFmt = craneLib.buildPackage rec {
+        #   pname = "leptosfmt";
+        #   version = "0.1.33";
+
+        #   doCheck = false;
+        #   cargoExtraArgs = "--locked --features no_downloads";
+
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "bram209";
+        #     repo = pname;
+        #     rev = "${version}";
+        #     hash = "sha256-rXOBotOxgaBUp72hd4AGrH6pcSmBRCEh+3FsjFE74iA=";
+        #   };
+        # };
 
         cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
         inherit (cargoToml.package) version name;
@@ -70,6 +85,7 @@
             binaryen
           ];
 
+          doNotPostBuildInstallCargoBinaries = true;
           buildPhaseCargoCommand = "cargo leptos build --release -vvv";
           cargoTestCommand = "cargo leptos test --release -vvv";
           cargoExtraArgs = "";
@@ -113,6 +129,7 @@
             [
               toolchain
               cargoLeptos
+              # leptosFmt
               binaryen
               sqlx-cli
             ]

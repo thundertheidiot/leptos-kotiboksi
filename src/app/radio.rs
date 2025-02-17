@@ -1,16 +1,6 @@
 use crate::css::ClassName;
-use leptos::component;
-use leptos::create_effect;
-use leptos::create_node_ref;
-use leptos::create_signal;
-use leptos::event_target_value;
-use leptos::html::Audio;
 use leptos::logging::error;
-use leptos::view;
-use leptos::HtmlElement;
-use leptos::IntoView;
-use leptos::ReadSignal;
-use leptos::SignalUpdate;
+use leptos::prelude::*;
 
 #[component]
 fn RadioAudio(
@@ -18,15 +8,15 @@ fn RadioAudio(
     playing: ReadSignal<bool>,
     visible: ReadSignal<bool>,
 ) -> impl IntoView {
-    let audio_ref = create_node_ref::<leptos::html::Audio>();
+    let audio_ref = NodeRef::new();
 
-    let audio: HtmlElement<Audio> = view! {
+    let audio = view! {
         <audio node_ref=audio_ref prop:volume=move || volume() / 100.0>
-            <source src="https://kotiboksi.xyz/radio.ogg"/>
+            <source src="https://kotiboksi.xyz/radio.ogg" />
         </audio>
     };
 
-    create_effect(move |_| {
+    Effect::new(move |_| {
         if let Some(audio) = audio_ref.get() {
             if visible() {
                 if playing() {
@@ -47,9 +37,9 @@ fn RadioAudio(
 
 #[component]
 pub fn Radio() -> impl IntoView {
-    let (visible, set_visible) = create_signal(false);
-    let (playing, set_playing) = create_signal(false);
-    let (volume, set_volume) = create_signal(50.0);
+    let (visible, set_visible) = signal(false);
+    let (playing, set_playing) = signal(false);
+    let (volume, set_volume) = signal(50.0);
 
     view! {
         <button class=ClassName::NAVBUTTON on:click=move |_| { set_visible.update(|n| *n = !*n) }>
@@ -60,7 +50,7 @@ pub fn Radio() -> impl IntoView {
             class=ClassName::RADIO_CONTROLS
             style=move || { if visible() { "display:block" } else { "display:none" } }
         >
-            <RadioAudio volume=volume playing=playing visible=visible/>
+            <RadioAudio volume=volume playing=playing visible=visible />
             <h2>"Radio"</h2>
 
             <button
@@ -70,7 +60,7 @@ pub fn Radio() -> impl IntoView {
                 {move || { if playing() { "Pause" } else { "Play" } }}
             </button>
 
-            <br/>
+            <br />
 
             <input
                 class=ClassName::SLIDER

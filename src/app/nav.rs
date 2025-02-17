@@ -1,6 +1,7 @@
 use crate::app::radio::Radio;
 use crate::css::ClassName;
-use leptos::{component, view, IntoView};
+
+use leptos::prelude::*;
 
 #[component]
 pub fn Navbar() -> impl IntoView {
@@ -14,7 +15,7 @@ pub fn Navbar() -> impl IntoView {
                 "Guestbook"
             </a>
 
-            <Radio/>
+            <Radio />
         </nav>
     }
 }

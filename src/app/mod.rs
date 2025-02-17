@@ -1,6 +1,11 @@
 use leptos::{component, view, IntoView};
 use leptos_meta::{provide_meta_context, Style, Title};
-use leptos_router::{Route, Router, Routes};
+
+use leptos::prelude::*;
+use leptos_router::components::FlatRoutes;
+use leptos_router::components::Route;
+use leptos_router::components::Router;
+use leptos_router::StaticSegment;
 
 use crate::css::{ClassName, STYLE_SHEET};
 
@@ -20,17 +25,16 @@ pub fn App() -> impl IntoView {
     view! {
         <Style>{STYLE_SHEET}</Style>
 
-        <Title text="kotiboksi"/>
+        <Title text="kotiboksi" />
 
         <div class=ClassName::MAIN_CONTAINER>
 
             <Router>
-                <Navbar/>
-                <Routes>
-                    <Route path="" view=HomePage/>
-                    <Route path="/guestbook" view=Guestbook/>
-                    <Route path="/*any" view=NotFound/>
-                </Routes>
+                <Navbar />
+                <FlatRoutes fallback=|| NotFound>
+                    <Route path=StaticSegment("") view=HomePage />
+                    <Route path=StaticSegment("/guestbook") view=Guestbook />
+                </FlatRoutes>
             </Router>
         </div>
     }
@@ -47,7 +51,6 @@ fn NotFound() -> impl IntoView {
     // to the server
     #[cfg(feature = "ssr")]
     {
-        use leptos::expect_context;
         // this can be done inline because it's synchronous
         // if it were async, we'd use a server function
         let resp = expect_context::<leptos_actix::ResponseOptions>();
@@ -59,7 +62,7 @@ fn NotFound() -> impl IntoView {
             <h1>"404 - Not Found"</h1>
 
             {move || {
-                let breaks = vec![view! { <br/> }; 10];
+                let breaks = vec![view! { <br /> }; 10];
                 breaks.into_view()
             }}
 

@@ -3,7 +3,7 @@ use sqlx::{Connection, SqliteConnection, migrate::MigrateDatabase, Sqlite};
 #[cfg(feature = "ssr")]
 use std::env::var;
 #[cfg(feature = "ssr")]
-use leptos::ServerFnError;
+use leptos::prelude::ServerFnError;
 
 #[cfg(feature = "ssr")]
 pub async fn db() -> Result<SqliteConnection, ServerFnError> {
