@@ -1,5 +1,5 @@
 #[cfg(feature = "ssr")]
-use sqlx::{Connection, SqliteConnection};
+use sqlx::{Connection, SqliteConnection, migrate::MigrateDatabase, Sqlite};
 #[cfg(feature = "ssr")]
 use std::env::var;
 #[cfg(feature = "ssr")]

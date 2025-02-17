@@ -1,3 +1,8 @@
+use leptos::SignalSet;
+use leptos::create_signal;
+use leptos::server_fn::ServerFn;
+use leptos::create_node_ref;
+use leptos::Action;
 use leptos_router::ActionForm;
 use leptos::CollectView;
 use leptos::View;
@@ -12,9 +17,17 @@ use leptos::component;
 use leptos::server;
 use leptos::ServerFnError;
 
+// Check build.rs
+include!(concat!(env!("OUT_DIR"), "/secret.rs"));
+
 #[server(GetGuestbookEntries, "/api", "GetJson")]
-pub async fn get_guestbook_entries() -> Result<Vec<(String, String)>, ServerFnError> {
+pub async fn get_guestbook_entries(secret: String) -> Result<Vec<(String, String)>, ServerFnError> {
+    if secret != SECRET {
+	return Err(ServerFnError::ServerError("haha skill issue".to_string()));
+    }
+
     use crate::db::db;
+
 
     let mut conn = db().await?;
 
@@ -31,8 +44,42 @@ pub async fn get_guestbook_entries() -> Result<Vec<(String, String)>, ServerFnEr
     }).rev().collect::<Vec<(String, String)>>())
 }
 
+#[server(AddGuestbookEntryArgs, "/api")]
+pub async fn add_guestbook_entry_args(name: String, message: String) -> Result<(), ServerFnError> {
+    todo!()
+}
+
+fn add_guestbook_entry_action() -> Action<AddGuestbookEntryArgs, Result<(), ServerFnError>> {
+    #[cfg(feature = "ssr")]
+    let action_function = |args: &AddGuestbookEntryArgs| AddGuestbookEntry::run_body(
+	AddGuestbookEntry {
+	    secret: SECRET.to_string(),
+	    name: args.name.clone(),
+	    message: args.message.clone(),
+	}
+
+    );
+
+    // When not on the server send a fetch to request the fn call.
+    #[cfg(not(feature = "ssr"))]
+    let action_function = |args: &AddGuestbookEntryArgs| AddGuestbookEntry::run_on_client(
+	AddGuestbookEntry {
+	    secret: SECRET.to_string(),
+	    name: args.name.clone(),
+	    message: args.message.clone(),
+	}
+    );
+
+    Action::new(action_function).using_server_fn()
+}
+
+
 #[server(AddGuestbookEntry, "/api")]
-pub async fn add_guestbook_entry(name: String, message: String) -> Result<(), ServerFnError> {
+pub async fn add_guestbook_entry(secret: String, name: String, message: String) -> Result<(), ServerFnError> {
+    if secret != SECRET {
+	return Err(ServerFnError::ServerError("LIGMA BALLS".to_string()));
+    }
+
     use crate::db::db;
 
     let mut conn = db().await?;
@@ -50,43 +97,61 @@ pub async fn add_guestbook_entry(name: String, message: String) -> Result<(), Se
 
 #[component]
 pub fn Guestbook() -> impl IntoView {
-    let add_entry = create_server_action::<AddGuestbookEntry>();
+    let add_entry = add_guestbook_entry_action();
+    let (submitted, set_submit) = create_signal(false);
 
     let entries = create_resource(
 	move || add_entry.version().get(),
-	    move |_| get_guestbook_entries(),
-	    );
+	move |_| {
+	    get_guestbook_entries(SECRET.to_string())
+	},
+    );
+
+    let form_ref = create_node_ref::<leptos::html::Form>();
 
     view! {
         <div class=ClassName::GUESTBOOK_CONTAINER>
             <div class=ClassName::TEXTPART>
                 {move || {
-                    view! {
-                        <h2>"Sign the guestbook!"</h2>
-                        <ActionForm action=add_entry>
+                    if submitted() {
+                        view! { <p>"Thanks!"</p> }.into_view()
+                    } else {
+                        view! {
+                            <h2>"Sign the guestbook!"</h2>
+                            <ActionForm
+                                action=add_entry
+                                node_ref=form_ref
 
-                            <input
-                                class=ClassName::GUESTBOOK_TEXTINPUT
-                                type="text"
-                                name="name"
-                                placeholder="Name (max=50)"
-                                maxlength="50"
-                                required
-                            />
-                            <input
-                                class=ClassName::GUESTBOOK_TEXTINPUT
-                                type="text"
-                                name="message"
-                                placeholder="Message (max=1000)"
-                                maxlength="1000"
-                                required
-                            />
-                            <input
-                                class=ClassName::GUESTBOOK_SUBMITINPUT
-                                type="submit"
-                                value="Submit"
-                            />
-                        </ActionForm>
+                                on:submit=move |_| {
+                                    set_submit.set(true);
+                                }
+                            >
+
+                                <input
+                                    class=ClassName::GUESTBOOK_TEXTINPUT
+                                    type="text"
+                                    name="name"
+                                    placeholder="Name (max=50)"
+                                    maxlength="50"
+                                    required
+                                />
+                                <input
+                                    class=ClassName::GUESTBOOK_TEXTINPUT
+                                    type="text"
+                                    name="message"
+                                    placeholder="Message (max=1000)"
+                                    maxlength="1000"
+                                    required
+                                />
+                                <input
+                                    class=ClassName::GUESTBOOK_SUBMITINPUT
+                                    type="submit"
+                                    value="Submit"
+                                />
+
+                            </ActionForm>
+                        }
+                            .into_view()
                     }
                 }}
 
