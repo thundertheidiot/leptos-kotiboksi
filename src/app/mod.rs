@@ -1,8 +1,8 @@
-use leptos::*;
-use leptos_meta::*;
-use leptos_router::*;
+use leptos::{component, view, IntoView};
+use leptos_meta::{provide_meta_context, Style, Title};
+use leptos_router::{Route, Router, Routes};
 
-use crate::css::*;
+use crate::css::{ClassName, STYLE_SHEET};
 
 mod guestbook;
 mod home;
@@ -47,6 +47,7 @@ fn NotFound() -> impl IntoView {
     // to the server
     #[cfg(feature = "ssr")]
     {
+        use leptos::expect_context;
         // this can be done inline because it's synchronous
         // if it were async, we'd use a server function
         let resp = expect_context::<leptos_actix::ResponseOptions>();

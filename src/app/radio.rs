@@ -27,22 +27,18 @@ fn RadioAudio(
     };
 
     create_effect(move |_| {
-        let audio = match audio_ref.get() {
-            Some(v) => v,
-            None => {
-                error!("failed to grab radio audio");
-                return;
-            }
-        };
-
-        if visible() {
-            if playing() {
-                let _ = audio.play();
+        if let Some(audio) = audio_ref.get() {
+            if visible() {
+                if playing() {
+                    let _ = audio.play();
+                } else {
+                    let _ = audio.pause();
+                }
             } else {
                 let _ = audio.pause();
             }
         } else {
-            let _ = audio.pause();
+            error!("failed to grab radio audio by reference");
         }
     });
 
@@ -82,11 +78,11 @@ pub fn Radio() -> impl IntoView {
                 min="0"
                 max="100"
                 on:input=move |ev| {
-                    set_volume(event_target_value(&ev).parse::<f64>().unwrap_or(50.0))
+                    set_volume(event_target_value(&ev).parse::<f64>().unwrap_or(50.0));
                 }
             />
 
-            <p>"Volume: " {move || volume()} "%"</p>
+            <p>"Volume: " {volume} "%"</p>
 
             <p>
                 "Link: "

@@ -12,12 +12,14 @@ pub async fn db() -> Result<SqliteConnection, ServerFnError> {
 
 #[cfg(feature = "ssr")]
 pub async fn init_db() -> Result<(), ServerFnError> {
+    let url = &var("DATABASE_URL")?;
+    if !Sqlite::database_exists(url).await? {
+	Sqlite::create_database(url).await?;
+    }
 
     let mut conn = db().await?;
 
-    let _ = sqlx::query!("CREATE TABLE IF NOT EXISTS guestbook (name text, message text)")
-        .execute(&mut conn)
-        .await?;
+    sqlx::migrate!().run(&mut conn).await?;
 
     Ok(())
 }

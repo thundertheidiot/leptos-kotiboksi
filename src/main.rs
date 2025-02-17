@@ -28,10 +28,9 @@ async fn main() -> std::io::Result<()> {
         let site_root = &leptos_options.site_root;
 
         App::new()
-            // serve JS/WASM/CSS from `pkg`
             .service(Files::new("/pkg", format!("{site_root}/pkg")))
-            // serve other assets from the `assets` directory
             .service(Files::new("/static", site_root))
+            .service(Files::new("/files", "/files"))
             // serve the favicon from /favicon.ico
             .service(favicon)
             .leptos_routes(leptos_options.to_owned(), routes.to_owned(), App)

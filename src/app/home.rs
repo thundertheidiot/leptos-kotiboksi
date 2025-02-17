@@ -1,6 +1,5 @@
 use crate::css::ClassName;
-use leptos::IntoView;
-use leptos::*;
+use leptos::{component, view, IntoView};
 
 #[component]
 pub fn HomePage() -> impl IntoView {

@@ -1,6 +1,6 @@
 use crate::app::radio::Radio;
 use crate::css::ClassName;
-use leptos::*;
+use leptos::{component, view, IntoView};
 
 #[component]
 pub fn Navbar() -> impl IntoView {
