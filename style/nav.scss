@@ -1,18 +1,46 @@
-@import 'misc';
+@import "misc";
 
 .nav {
-    margin-right: 15px;
-    border: $border;
-    text-align: center;
-    background-color: $background;
+	margin-right: 15px;
+	border: $border;
+	text-align: center;
+	background-color: $background;
 	//flex-shrink: 20;
-    width: fit-content;
+	// width: fit-content;
 	//height: calc(100% - 4px);
 }
 
 .nav_link {
 	display: block;
 	margin: 5px;
-    padding: 10px;
+	padding: 10px;
 	border: $border;
+}
+
+@media (min-aspect-ratio: 4/3) {
+	.main_container {
+		display: inline-flex;
+	}
+
+	.radio_controls {
+		width: 15vw;
+	}
+}
+
+@media (max-aspect-ratio: 4/3) {
+	.nav {
+		width: 100%;
+		padding-bottom: 6px;
+		margin-bottom: 18px;
+	}
+
+	.main_container {
+		padding: 0%;
+		margin: 0%;
+	}
+
+	.radio_controls {
+		width: 35vw;
+		margin: auto;
+	}
 }
