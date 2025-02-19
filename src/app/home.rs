@@ -69,28 +69,6 @@ pub fn HomePage() -> impl IntoView {
             <br />
 
             <div class=ClassName::TEXTPART>
-            <h2>"Misc"</h2>
-
-        <ul>
-        <li><a href="https://github.com/thundertheidiot">"github"</a></li>
-        <li><a href="https://gitlab.com/thundertheidiot">"gitlab"</a></li>
-        <li><a href="https://codeberg.org/thundertheidiot">"codeberg"</a>" (not much on here yet)"</li>
-            </ul>
-
-            <img src="/static/img/buttons/gnu-linux.gif" alt="gnu/linux" />
-            " "
-            <img src="/static/img/buttons/emacs.gif" alt="emacs" />
-            " "
-            <img src="/static/img/buttons/pride.gif" alt="pridenow" />
-            " "
-            <img src="/static/img/buttons/transnow2.gif" alt="transnow" />
-            " "
-
-        <br/>
-
-    // when published
-        // <img src="/static/img/buttons/agplv3-88x31.gif" alt="agplv3" />
-        // " "
 
             <a href="https://cyber.dabamos.de/88x31"><img src="/static/img/buttons/88x31.gif" alt="the buttons" /></a>
             " "
@@ -99,13 +77,36 @@ pub fn HomePage() -> impl IntoView {
             <a href="https://maia.crimew.gay"><img src="/static/img/buttons/maia.png" alt="maia.crimew.gay" /></a>
             " "
             <a href="https://cartercoding.com"><img src="/static/img/buttons/carter.webp" alt="carer i am carer" /></a>
+            " "
+            <a href="https://corru.observer"><img src="/static/img/buttons/corru-observer.gif" alt="corru.observer" /></a>
 
+        <br style="margin: 10px;"/>
+
+        <img src="/static/img/buttons/gnu-linux.gif" alt="gnu/linux" />
+            " "
+            <img src="/static/img/buttons/emacs.gif" alt="emacs" />
+            " "
+            <img src="/static/img/buttons/pride.gif" alt="pridenow" />
+            " "
+            <img src="/static/img/buttons/transnow2.gif" alt="transnow" />
+            " "
+
+    // when published
+        // <img src="/static/img/buttons/agplv3-88x31.gif" alt="agplv3" />
+        // " "
 
             </div>
 
         <br/>
 
-        <div class=ClassName::TEXTPART>
+            <div class=ClassName::TEXTPART>
+        <h2>"My links"</h2>
+        <ul>
+        <li><a href="https://github.com/thundertheidiot">"github"</a></li>
+        <li><a href="https://gitlab.com/thundertheidiot">"gitlab"</a></li>
+        <li><a href="https://codeberg.org/thundertheidiot">"codeberg"</a>" (not much on here yet)"</li>
+            </ul>
+
                 <h2>"Contact"</h2>
 
                 <p style="margin:0px">"You can find me on"</p>
