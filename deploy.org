@@ -1,0 +1,29 @@
+#+NAME: docker-image
+#+begin_src shell
+nix build .#docker.x86_64-linux --print-out-paths
+#+end_src
+
+#+RESULTS: docker-image
+: /nix/store/f85gbj6r71pvsik1x3n44pmy0magpq5r-kotiboksi.tar.gz
+
+#+NAME: ensure
+#+begin_src emacs-lisp :var docker=docker-image
+(copy-file docker "/ssh:kotiboksi.xyz:/tmp/kotiboksi-docker")
+#+end_src
+
+#+RESULTS:
+
+With the ensure variable the code block is dependent on the previous blocks
+
+#+begin_src shell :shebang #!/usr/bin/env bash :dir /ssh:kotiboksi.xyz: :var ensure=ensure
+docker load -i /tmp/kotiboksi-docker && rm /tmp/kotiboksi-docker
+
+cd /srv/docker-setup/web-stack
+docker-compose stop leptos-site
+docker-compose rm --force leptos-site
+
+docker-compose up -d leptos-site
+#+end_src
+
+#+RESULTS:
+: Going to remove web-stack_leptos-site_1
