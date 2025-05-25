@@ -29,7 +29,8 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .service(Files::new("/pkg", format!("{site_root}/pkg")))
-            .service(Files::new("/static", site_root))
+            .service(Files::new("/static", &site_root))
+            .service(Files::new("/assets", site_root))
             .service(Files::new("/files", "/files"))
             // serve the favicon from /favicon.ico
             .service(favicon)

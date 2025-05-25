@@ -6,6 +6,7 @@ pub fn HomePage() -> impl IntoView {
     view! {
         <div>
             <div class=ClassName::TEXTPART>
+
             <h1>"Hi"</h1>
 
             <p>
@@ -99,7 +100,9 @@ pub fn HomePage() -> impl IntoView {
 
         <br/>
 
-            <div class=ClassName::TEXTPART>
+            <div class=ClassName::LINKS>
+
+        <div class=ClassName::NOPAD>
         <h2>"My links"</h2>
         <ul>
         <li><a href="https://github.com/thundertheidiot">"github"</a></li>
@@ -113,7 +116,12 @@ pub fn HomePage() -> impl IntoView {
                 <p>
                     "XMPP: " <a>"thunder@gooptyland.xyz"</a> <br /> "Matrix: "
                     <a>"@thunder:kotiboksi.xyz"</a> <br /> "Discord: " <a>"thundertheidiot"</a>
-                </p>
+            </p>
+
+            </div>
+        // <div class=ClassName::PROFILE>
+        //     <img src="/static/img/profile.webp"/>
+        // </div>
         </div>
         </div>
     }
