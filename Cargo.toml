@@ -41,6 +41,17 @@ lto = true
 codegen-units = 1
 panic = "abort"
 
+[profile.wasm-debug]
+inherits = "dev"
+opt-level = 's'
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[profile.dev]
+panic = "abort"
+
 [package.metadata.turf.class_names]
 template = "<original_name>"
 
@@ -64,3 +75,5 @@ lib-features = ["hydrate"]
 lib-default-features = false
 
 lib-profile-release = "wasm-release"
+lib-profile-dev = "wasm-debug"
+lib-cargo-args = ["-Z", "build-std=std,panic_abort,core,alloc", "-Z", "build-std-features=panic_immediate_abort"]
