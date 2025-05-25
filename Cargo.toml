@@ -76,4 +76,4 @@ lib-default-features = false
 
 lib-profile-release = "wasm-release"
 lib-profile-dev = "wasm-debug"
-lib-cargo-args = ["-Z", "build-std=std,panic_abort,core,alloc", "-Z", "build-std-features=panic_immediate_abort"]
+# lib-cargo-args = ["-Z", "build-std=std,panic_abort,core,alloc", "-Z", "build-std-features=panic_immediate_abort"]
