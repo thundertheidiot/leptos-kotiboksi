@@ -17,7 +17,7 @@ leptos_actix = { version = "0.7", optional = true }
 leptos_router = { version = "0.7", features = ["nightly"] }
 wasm-bindgen = "=0.2.100"
 turf = "0.9.5"
-cfg-if = "1.0.0"
+# cfg-if = "1.0.0"
 sqlx = { version = "0.8.2", features = ["runtime-tokio", "sqlite"], optional = true }
 serde = { version = "1.0.210", features = ["derive"] }
 
