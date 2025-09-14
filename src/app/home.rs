@@ -34,7 +34,7 @@ pub fn HomePage() -> impl IntoView {
             </p>
 
             <p>
-            "I also like trying more obscure languages languages like Haskell or Common Lisp"
+            "I also like trying more obscure languages languages like Haskell"
             ", but i haven't really used them outside of small utility programs, some of which can be found embedded in my nix configuration. "
             "I also like Nix (the language)."
             </p>
@@ -75,8 +75,6 @@ pub fn HomePage() -> impl IntoView {
             " "
             <a href="https://nixos.org"><img src="/static/img/buttons/nixos.png" alt="nixos" /></a>
             " "
-            <a href="https://maia.crimew.gay"><img src="/static/img/buttons/maia.png" alt="maia.crimew.gay" /></a>
-            " "
             <a href="https://cartercoding.com"><img src="/static/img/buttons/carter.webp" alt="carer i am carer" /></a>
             " "
             <a href="https://corru.observer"><img src="/static/img/buttons/corru-observer.gif" alt="corru.observer" /></a>
@@ -114,8 +112,7 @@ pub fn HomePage() -> impl IntoView {
 
                 <p style="margin:0px">"You can find me on"</p>
                 <p>
-                    "XMPP: " <a>"thunder@gooptyland.xyz"</a> <br /> "Matrix: "
-                    <a>"@thunder:kotiboksi.xyz"</a> <br /> "Discord: " <a>"thundertheidiot"</a>
+                    "XMPP: " <a>"thunder@gooptyland.xyz"</a> <br /> "Discord: " <a>"thundertheidiot"</a>
             </p>
 
             </div>

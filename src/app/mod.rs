@@ -33,7 +33,7 @@ pub fn App() -> impl IntoView {
                 <Navbar />
                 <FlatRoutes fallback=|| NotFound>
                     <Route path=StaticSegment("") view=HomePage />
-                    <Route path=StaticSegment("/guestbook") view=Guestbook />
+                    // <Route path=StaticSegment("/guestbook") view=Guestbook />
                 </FlatRoutes>
             </Router>
         </div>
