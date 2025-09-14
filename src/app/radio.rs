@@ -12,7 +12,7 @@ fn RadioAudio(
 
     let audio = view! {
         <audio node_ref=audio_ref prop:volume=move || volume() / 100.0>
-            <source src="https://kotiboksi.xyz/radio.ogg" />
+            <source src="/radio.ogg" />
         </audio>
     };
 
