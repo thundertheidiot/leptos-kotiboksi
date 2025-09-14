@@ -73,6 +73,7 @@ pub async fn add_guestbook_entry(name: String, message: String) -> Result<(), Se
 	}
 }
 
+// no real security here, should probably disable this
 #[component]
 pub fn Guestbook() -> impl IntoView {
     let add_entry = ServerAction::<AddGuestbookEntry>::new();
