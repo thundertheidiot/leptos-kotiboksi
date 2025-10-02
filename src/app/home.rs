@@ -112,7 +112,7 @@ pub fn HomePage() -> impl IntoView {
 
                 <p style="margin:0px">"You can find me on"</p>
                 <p>
-                    "XMPP: " <a>"thunder@gooptyland.xyz"</a> <br /> "Discord: " <a>"thundertheidiot"</a>
+                    "XMPP: " <a>"thunder@kotiboksi.xyz"</a> <br /> "Discord: " <a>"thundertheidiot"</a>
             </p>
 
             </div>
