@@ -104,8 +104,6 @@ pub fn HomePage() -> impl IntoView {
         <h2>"My links"</h2>
         <ul>
         <li><a href="https://github.com/thundertheidiot">"github"</a></li>
-        <li><a href="https://gitlab.com/thundertheidiot">"gitlab"</a></li>
-        <li><a href="https://codeberg.org/thundertheidiot">"codeberg"</a>" (not much on here yet)"</li>
             </ul>
 
                 <h2>"Contact"</h2>

@@ -27,11 +27,13 @@ async fn main() -> std::io::Result<()> {
         let leptos_options = &conf.leptos_options;
         let site_root = leptos_options.site_root.clone().to_string();
 
+	let files = std::env::var("FILES").unwrap_or("/files".to_string());
+
         App::new()
             .service(Files::new("/pkg", format!("{site_root}/pkg")))
             .service(Files::new("/static", &site_root))
             .service(Files::new("/assets", site_root))
-            .service(Files::new("/files", "/files"))
+            .service(Files::new("/files", files))
             // serve the favicon from /favicon.ico
             .service(favicon)
         // .leptos_routes(leptos_options.to_owned(), routes.to_owned())
