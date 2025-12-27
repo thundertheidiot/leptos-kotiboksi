@@ -44,7 +44,7 @@ async fn main() -> std::io::Result<()> {
 		    use leptos::prelude::*;
 		    use leptos_meta::MetaTags;
 		    view! {
-                <!DOCTYPE html> 
+                <!DOCTYPE html>
                 <html lang="en">
                     <head>
                         <meta charset="utf-8" />

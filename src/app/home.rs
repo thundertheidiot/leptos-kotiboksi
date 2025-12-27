@@ -6,34 +6,33 @@ pub fn HomePage() -> impl IntoView {
     view! {
         <div>
             <div class=ClassName::TEXTPART>
-            <img src="/static/img/profile.webp" class=ClassName::PROFILE />
+                <img src="/static/img/profile.webp" class=ClassName::PROFILE />
 
-                    <h1>"Hiiii :3"</h1>
+                <h1>"Hiiii :3"</h1>
 
-                    <p>"I'm thunder, welcome to my stupid website"</p>
+                <p>"I'm thunder, welcome to my stupid website"</p>
 
-                    <h2>"About"</h2>
+                <h2>"About"</h2>
 
-                    <p>
-                        "I like tinkering with computers, both hardware and software. "
-                        "I am now studying computer science at a "
-                        <i>"\"university of applied sciences\""</i> "."
-                    </p>
+                <p>
+                    "I like tinkering with computers, both hardware and software. "
+                    "I am now studying computer science at a "
+                    <i>"\"university of applied sciences\""</i> "."
+                </p>
 
-                    <p>
-                        "I am a huge fan of NixOS and Emacs. "
-                        "You can find my very convoluted flake "
-                        <a href="https://github.com/thundertheidiot/nixdots">"here"</a>
-                        ", it is also powering this very server. "
-                        <a href="https://github.com/thundertheidiot/emacs">"This"</a>
-                        " is my Emacs config, packaged nicely with nix."
-                    </p>
+                <p>
+                    "I am a huge fan of NixOS and Emacs. " "You can find my very convoluted flake "
+                    <a href="https://github.com/thundertheidiot/nixdots">"here"</a>
+                    ", it is also powering this very server. "
+                    <a href="https://github.com/thundertheidiot/emacs">"This"</a>
+                    " is my Emacs config, packaged nicely with nix."
+                </p>
 
-                    <p>
-                        "My favourite general purpose language is Rust, "
-                        "but I also like occasionally playing around with weirder stuff like Haskell. "
-                        "I like the Nix language."
-                    </p>
+                <p>
+                    "My favourite general purpose language is Rust, "
+                    "but I also like occasionally playing around with weirder stuff like Haskell. "
+                    "I like the Nix language."
+                </p>
 
             </div>
 
@@ -112,23 +111,23 @@ pub fn HomePage() -> impl IntoView {
                 </a>
                 " "
                 <a href="https://tired.moe">
-                    <img src="/static/img/buttons/tired.moe.gif" alt="tired.moe"/>
+                    <img src="/static/img/buttons/tired.moe.gif" alt="tired.moe" />
                 </a>
                 " "
                 <a href="https://adam.qpon/">
-                    <img src="/static/img/buttons/adamperkowski.dev.gif" alt="adam"/>
+                    <img src="/static/img/buttons/adamperkowski.dev.gif" alt="adam" />
                 </a>
                 " "
                 <a href="https://aprl.pet/">
-                    <img src="/static/img/buttons/aprl.pet.png" alt="april!!!!"/>
+                    <img src="/static/img/buttons/aprl.pet.png" alt="april!!!!" />
                 </a>
                 " "
                 <a href="https://sketchni.uk/">
-                    <img src="/static/img/buttons/sketchni.uk.png" alt="sketchni"/>
+                    <img src="/static/img/buttons/sketchni.uk.png" alt="sketchni" />
                 </a>
                 " "
                 <a href="https://tasky.nuxt.dev/">
-                    <img src="/static/img/buttons/tasky.nuxt.dev.webp" alt="tasky"/>
+                    <img src="/static/img/buttons/tasky.nuxt.dev.webp" alt="tasky" />
                 </a>
                 " "
 

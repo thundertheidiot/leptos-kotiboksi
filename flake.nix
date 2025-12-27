@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    rust-overlay.url = "github:oxalica/rust-overlay/591c5ae84f066bdfc9797b217df392d58eafd088";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    rust-overlay.url = "github:oxalica/rust-overlay";
     crane.url = "github:ipetkov/crane";
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -11,7 +11,6 @@
     rust-overlay,
     flake-utils,
     crane,
-    self,
     ...
   }:
     flake-utils.lib.eachDefaultSystem (
@@ -28,37 +27,40 @@
 
         cargoLeptos = craneLib.buildPackage rec {
           pname = "cargo-leptos";
-          version = "0.2.26";
+          version = "0.3.2";
 
           cargoArtifacts = craneLib.buildDepsOnly {
-            inherit src pname version;
+            inherit src pname version buildInputs;
           };
 
           doCheck = false;
           cargoExtraArgs = "--locked --features no_downloads";
 
+          buildInputs = with pkgs; [
+            perl
+          ];
+
           src = pkgs.fetchFromGitHub {
             owner = "leptos-rs";
             repo = pname;
             rev = "v${version}";
-            hash = "sha256-v1gNH3pq5db/swsk79nEzgtR4jy3f/xHs4QaLnVcVYU=";
+            hash = "sha256-aH7b9Dbz4vbh9X4RuhFdmu2U1sgGgbLUZxmwhVxW248=";
           };
         };
 
-        # leptosFmt = craneLib.buildPackage rec {
-        #   pname = "leptosfmt";
-        #   version = "0.1.33";
+        wasmBindgen = pkgs.buildWasmBindgenCli rec {
+          src = pkgs.fetchCrate {
+            pname = "wasm-bindgen-cli";
+            version = "0.2.106";
+            hash = "sha256-M6WuGl7EruNopHZbqBpucu4RWz44/MSdv6f0zkYw+44=";
+          };
 
-        #   doCheck = false;
-        #   cargoExtraArgs = "--locked --features no_downloads";
-
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "bram209";
-        #     repo = pname;
-        #     rev = "${version}";
-        #     hash = "sha256-rXOBotOxgaBUp72hd4AGrH6pcSmBRCEh+3FsjFE74iA=";
-        #   };
-        # };
+          cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+            inherit src;
+            inherit (src) pname version;
+            hash = "sha256-ElDatyOwdKwHg3bNH/1pcxKI7LXkhsotlDPQjiLHBwA=";
+          };
+        };
 
         cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
         inherit (cargoToml.package) version name;
@@ -83,6 +85,7 @@
           buildInputs = with pkgs; [
             cargoLeptos
             binaryen
+            wasmBindgen
           ];
 
           doNotPostBuildInstallCargoBinaries = true;
@@ -129,7 +132,8 @@
             [
               toolchain
               cargoLeptos
-              # leptosFmt
+              wasmBindgen
+              leptosfmt
               binaryen
               sqlx-cli
             ]
