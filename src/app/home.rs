@@ -111,6 +111,26 @@ pub fn HomePage() -> impl IntoView {
                     <img src="/static/img/buttons/diza.png" alt="diza" width="88" height="31" />
                 </a>
                 " "
+                <a href="https://tired.moe">
+                    <img src="/static/img/buttons/tired.moe.gif" alt="tired.moe"/>
+                </a>
+                " "
+                <a href="https://adam.qpon/">
+                    <img src="/static/img/buttons/adamperkowski.dev.gif" alt="adam"/>
+                </a>
+                " "
+                <a href="https://aprl.pet/">
+                    <img src="/static/img/buttons/aprl.pet.png" alt="april!!!!"/>
+                </a>
+                " "
+                <a href="https://sketchni.uk/">
+                    <img src="/static/img/buttons/sketchni.uk.png" alt="sketchni"/>
+                </a>
+                " "
+                <a href="https://tasky.nuxt.dev/">
+                    <img src="/static/img/buttons/tasky.nuxt.dev.webp" alt="tasky"/>
+                </a>
+                " "
 
             // when published
             // <img src="/static/img/buttons/agplv3-88x31.gif" alt="agplv3" />
