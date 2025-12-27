@@ -7,37 +7,33 @@ pub fn HomePage() -> impl IntoView {
         <div>
             <div class=ClassName::TEXTPART>
 
-            <h1>"Hi"</h1>
+            <h1>"Hiiii :3"</h1>
 
             <p>
-            "I'm thunder, welcome to my website "
+            "I'm thunder, welcome to my stupid website"
             </p>
 
         <h2>"About"</h2>
 
         <p>
-        "I like computers and tinkering with them, i don't have much else going on in my life."
+            "I like tinkering with computers, both hardware and software. "
+        "I am now studying computer science at a "
+        <i>"\"university of applied sciences\""</i>
+        "."
+            </p>
+
+        <p>
+        "I am a huge fan of NixOS and Emacs. "
+        "You can find my very convoluted flake " <a href="https://github.com/thundertheidiot/nixdots">"here"</a>
+        ", it is also powering this very server. "
+        <a href="https://github.com/thundertheidiot/emacs">"This"</a> " is my Emacs config, packaged nicely with nix."
         </p>
 
-                <p>
-                    "I've been using (GNU/)Linux since 2017, i currently use "
-                    <a href="https://nixos.org">"NixOS"</a>
-                    ", which is a pretty niche distro that allows you to declaratively configure pretty much everything using nix. "
-            <a href="https://github.com/thundertheidiot/nixdots">"Here"</a>
-
-                    " is my slowly growing monstrocity of a config."
-                </p>
-
-            <p>
-            "My favourite language for general purpose programming is Rust. "
-            "I have a basic understanding of C and C++, but I'm not a huge fan. "
-            </p>
-
-            <p>
-            "I also like trying more obscure languages languages like Haskell"
-            ", but i haven't really used them outside of small utility programs, some of which can be found embedded in my nix configuration. "
-            "I also like Nix (the language)."
-            </p>
+        <p>
+        "My favourite general purpose language is Rust, "
+        "but I also like occasionally playing around with weirder stuff like Haskell. "
+        "I like the Nix language."
+        </p>
 
             </div>
 
@@ -49,15 +45,14 @@ pub fn HomePage() -> impl IntoView {
                 <p>
                     "This site was made with the "
                     <a href="https://leptos-rs.github.io/leptos/">"leptos framework"</a>
-            ", because i wanted to program in Rust. "
-        "All of this could easily be created with basic html, a sprinkle of js for the radio and a tiny bit of php for the guestbook, "
-        "in fact that is what i used previously."
+            " because I'm stupid like that. "
+        "All of this could easily be created with basic html and a sprinkle of js for the radio."
                 </p>
 
         <p>
-            "Thanks to leptos' server side rendering feature, there aren't really any downsides to using it here, "
-        "even with WASM disabled most of the page (everything \"important\") works. "
-        "The WASM blob is very small compared to other modern websites."
+            "Thanks to leptos' server side rendering feature, there's no real downside, "
+        "even with WASM disabled most of the page works. "
+        "The WASM blob is very small compared to most modern websites."
         </p>
 
                 <p>
@@ -88,6 +83,17 @@ pub fn HomePage() -> impl IntoView {
             <img src="/static/img/buttons/pride.gif" alt="pridenow" />
             " "
             <img src="/static/img/buttons/transnow2.gif" alt="transnow" />
+            " "
+
+        <br style="margin: 10px;"/>
+
+        <a href="https://elissa.moe"><img src="/static/img/buttons/elissa.png" alt="elissa (pingu)" /></a>
+            " "
+        <a href="https://isabelroses.com"><img src="/static/img/buttons/isabelroses.gif" alt="isabel roses" /></a>
+            " "
+        <a href="https://robinwobin.dev"><img src="/static/img/buttons/robin.gif" alt="robin" /></a>
+            " "
+        <a href="https://dbw.neocities.org"><img src="/static/img/buttons/diza.png" alt="diza" width="88" height="31"/></a>
             " "
 
     // when published
