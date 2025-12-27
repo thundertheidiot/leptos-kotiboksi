@@ -13,7 +13,6 @@ mod guestbook;
 mod home;
 mod nav;
 mod radio;
-use self::guestbook::Guestbook;
 use self::home::HomePage;
 use self::nav::Navbar;
 
@@ -33,7 +32,6 @@ pub fn App() -> impl IntoView {
                 <Navbar />
                 <FlatRoutes fallback=|| NotFound>
                     <Route path=StaticSegment("") view=HomePage />
-                    // <Route path=StaticSegment("/guestbook") view=Guestbook />
                 </FlatRoutes>
             </Router>
         </div>

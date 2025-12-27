@@ -5,8 +5,8 @@
 @import "nav";
 @import "radio";
 
-$width-2x: 2560px;
 $width-1x: 1920px;
+$width-2x: 2560px;
 
 @mixin bg-size($size) {
 	// background-size: 2011px * $size 1337px * $size;
@@ -143,10 +143,6 @@ code {
 	background: $background;
 }
 
-.main_container {
-	width: 100%;
-}
-
 .maintext_container {
 	display: block;
 	padding: 0px;
@@ -161,9 +157,14 @@ code {
 	margin-right: auto;
 }
 
+.main_container {
+	width: 100%;
+}
+
 @media screen and (min-aspect-ratio: 1/1) {
 	.main_container {
-		display: inline-flex;
+		display: flex;
+		justify-content: center;
 	}
 
 	.radio_controls {

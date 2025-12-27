@@ -6,34 +6,34 @@ pub fn HomePage() -> impl IntoView {
     view! {
         <div>
             <div class=ClassName::TEXTPART>
+            <img src="/static/img/profile.webp" class=ClassName::PROFILE />
 
-            <h1>"Hiiii :3"</h1>
+                    <h1>"Hiiii :3"</h1>
 
-            <p>
-            "I'm thunder, welcome to my stupid website"
-            </p>
+                    <p>"I'm thunder, welcome to my stupid website"</p>
 
-        <h2>"About"</h2>
+                    <h2>"About"</h2>
 
-        <p>
-            "I like tinkering with computers, both hardware and software. "
-        "I am now studying computer science at a "
-        <i>"\"university of applied sciences\""</i>
-        "."
-            </p>
+                    <p>
+                        "I like tinkering with computers, both hardware and software. "
+                        "I am now studying computer science at a "
+                        <i>"\"university of applied sciences\""</i> "."
+                    </p>
 
-        <p>
-        "I am a huge fan of NixOS and Emacs. "
-        "You can find my very convoluted flake " <a href="https://github.com/thundertheidiot/nixdots">"here"</a>
-        ", it is also powering this very server. "
-        <a href="https://github.com/thundertheidiot/emacs">"This"</a> " is my Emacs config, packaged nicely with nix."
-        </p>
+                    <p>
+                        "I am a huge fan of NixOS and Emacs. "
+                        "You can find my very convoluted flake "
+                        <a href="https://github.com/thundertheidiot/nixdots">"here"</a>
+                        ", it is also powering this very server. "
+                        <a href="https://github.com/thundertheidiot/emacs">"This"</a>
+                        " is my Emacs config, packaged nicely with nix."
+                    </p>
 
-        <p>
-        "My favourite general purpose language is Rust, "
-        "but I also like occasionally playing around with weirder stuff like Haskell. "
-        "I like the Nix language."
-        </p>
+                    <p>
+                        "My favourite general purpose language is Rust, "
+                        "but I also like occasionally playing around with weirder stuff like Haskell. "
+                        "I like the Nix language."
+                    </p>
 
             </div>
 
@@ -45,15 +45,15 @@ pub fn HomePage() -> impl IntoView {
                 <p>
                     "This site was made with the "
                     <a href="https://leptos-rs.github.io/leptos/">"leptos framework"</a>
-            " because I'm stupid like that. "
-        "All of this could easily be created with basic html and a sprinkle of js for the radio."
+                    " because I'm stupid like that. "
+                    "All of this could easily be created with basic html and a sprinkle of js for the radio."
                 </p>
 
-        <p>
-            "Thanks to leptos' server side rendering feature, there's no real downside, "
-        "even with WASM disabled most of the page works. "
-        "The WASM blob is very small compared to most modern websites."
-        </p>
+                <p>
+                    "Thanks to leptos' server side rendering feature, there's no real downside, "
+                    "even with WASM disabled most of the page works. "
+                    "The WASM blob is very small compared to most modern websites."
+                </p>
 
                 <p>
                     "The pixel font is IBM VGA 8x16, and you can find it "
@@ -66,64 +66,82 @@ pub fn HomePage() -> impl IntoView {
 
             <div class=ClassName::TEXTPART>
 
-            <a href="https://cyber.dabamos.de/88x31"><img src="/static/img/buttons/88x31.gif" alt="the buttons" /></a>
-            " "
-            <a href="https://nixos.org"><img src="/static/img/buttons/nixos.png" alt="nixos" /></a>
-            " "
-            <a href="https://cartercoding.com"><img src="/static/img/buttons/carter.webp" alt="carer i am carer" /></a>
-            " "
-            <a href="https://corru.observer"><img src="/static/img/buttons/corru-observer.gif" alt="corru.observer" /></a>
+                <a href="https://cyber.dabamos.de/88x31">
+                    <img src="/static/img/buttons/88x31.gif" alt="the buttons" />
+                </a>
+                " "
+                <a href="https://nixos.org">
+                    <img src="/static/img/buttons/nixos.png" alt="nixos" />
+                </a>
+                " "
+                <a href="https://cartercoding.com">
+                    <img src="/static/img/buttons/carter.webp" alt="carer i am carer" />
+                </a>
+                " "
+                <a href="https://corru.observer">
+                    <img src="/static/img/buttons/corru-observer.gif" alt="corru.observer" />
+                </a>
 
-        <br style="margin: 10px;"/>
+                <br style="margin: 10px;" />
 
-        <img src="/static/img/buttons/gnu-linux.gif" alt="gnu/linux" />
-            " "
-            <img src="/static/img/buttons/emacs.gif" alt="emacs" />
-            " "
-            <img src="/static/img/buttons/pride.gif" alt="pridenow" />
-            " "
-            <img src="/static/img/buttons/transnow2.gif" alt="transnow" />
-            " "
+                <img src="/static/img/buttons/gnu-linux.gif" alt="gnu/linux" />
+                " "
+                <img src="/static/img/buttons/emacs.gif" alt="emacs" />
+                " "
+                <img src="/static/img/buttons/pride.gif" alt="pridenow" />
+                " "
+                <img src="/static/img/buttons/transnow2.gif" alt="transnow" />
+                " "
 
-        <br style="margin: 10px;"/>
+                <br style="margin: 10px;" />
 
-        <a href="https://elissa.moe"><img src="/static/img/buttons/elissa.png" alt="elissa (pingu)" /></a>
-            " "
-        <a href="https://isabelroses.com"><img src="/static/img/buttons/isabelroses.gif" alt="isabel roses" /></a>
-            " "
-        <a href="https://robinwobin.dev"><img src="/static/img/buttons/robin.gif" alt="robin" /></a>
-            " "
-        <a href="https://dbw.neocities.org"><img src="/static/img/buttons/diza.png" alt="diza" width="88" height="31"/></a>
-            " "
+                <a href="https://elissa.moe">
+                    <img src="/static/img/buttons/elissa.png" alt="elissa (pingu)" />
+                </a>
+                " "
+                <a href="https://isabelroses.com">
+                    <img src="/static/img/buttons/isabelroses.gif" alt="isabel roses" />
+                </a>
+                " "
+                <a href="https://robinwobin.dev">
+                    <img src="/static/img/buttons/robin.gif" alt="robin" />
+                </a>
+                " "
+                <a href="https://dbw.neocities.org">
+                    <img src="/static/img/buttons/diza.png" alt="diza" width="88" height="31" />
+                </a>
+                " "
 
-    // when published
-        // <img src="/static/img/buttons/agplv3-88x31.gif" alt="agplv3" />
-        // " "
-
+            // when published
+            // <img src="/static/img/buttons/agplv3-88x31.gif" alt="agplv3" />
+            // " "
             </div>
 
-        <br/>
+            <br />
 
             <div class=ClassName::LINKS>
 
-        <div class=ClassName::NOPAD>
-        <h2>"My links"</h2>
-        <ul>
-        <li><a href="https://github.com/thundertheidiot">"github"</a></li>
-            </ul>
+                <div class=ClassName::NOPAD>
+                    <h2>"My links"</h2>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/thundertheidiot">"github"</a>
+                        </li>
+                        <li>
+                            <a href="https://ch.tetr.io/u/thundertheidiot">"tetr.io"</a>
+                        </li>
+                    </ul>
 
-                <h2>"Contact"</h2>
+                    <h2>"Contact"</h2>
 
-                <p style="margin:0px">"You can find me on"</p>
-                <p>
-                    "XMPP: " <a>"thunder@kotiboksi.xyz"</a> <br /> "Discord: " <a>"thundertheidiot"</a>
-            </p>
+                    <p style="margin:0px">"You can find me on"</p>
+                    <p>
+                        "XMPP: " <a>"thunder@kotiboksi.xyz"</a> <br /> "Discord: "
+                        <a>"thundertheidiot"</a>
+                    </p>
 
+                </div>
             </div>
-        // <div class=ClassName::PROFILE>
-        //     <img src="/static/img/profile.webp"/>
-        // </div>
-        </div>
         </div>
     }
 }

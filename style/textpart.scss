@@ -17,9 +17,9 @@
 }
 
 .profile {
-	padding: 0px;
-	display: flex;
-	justify-content: flex-end;
+	float: right;
+	margin-left: 5px;
+	border-radius: 50%;
 }
 
 .nopad {

@@ -51,7 +51,7 @@ pub fn Radio() -> impl IntoView {
             style=move || { if visible() { "display:block" } else { "display:none" } }
         >
 
-        <br/>
+            <br />
 
             <RadioAudio volume=volume playing=playing visible=visible />
             <h2>"Radio"</h2>

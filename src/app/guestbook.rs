@@ -102,8 +102,8 @@ pub fn Guestbook() -> impl IntoView {
                         <a>"Message: "</a>
                         {message.clone()}
                         <br />
-				    </div>
-				    <br/>
+                    </div>
+                    <br />
                 }
 			}).collect::<Vec<_>>()
 		    )
@@ -149,9 +149,9 @@ pub fn Guestbook() -> impl IntoView {
 
                     </ActionForm>
 
-            </Show>
+                </Show>
 
-	    <br/>
+                <br />
 
                 <Transition fallback=move || {
                     view! { <p>"Loading..."</p> }

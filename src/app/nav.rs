@@ -12,7 +12,7 @@ pub fn Navbar() -> impl IntoView {
             </a>
 
             // <a href="/guestbook" class=ClassName::NAV_LINK>
-            //     "Guestbook"
+            // "Guestbook"
             // </a>
 
             <Radio />
