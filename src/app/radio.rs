@@ -1,6 +1,9 @@
 use crate::css::ClassName;
 use leptos::logging::error;
 use leptos::prelude::*;
+use leptos::task::spawn_local;
+use leptos_use::use_interval;
+use leptos_use::UseIntervalReturn;
 
 #[component]
 fn RadioAudio(
@@ -10,9 +13,15 @@ fn RadioAudio(
 ) -> impl IntoView {
     let audio_ref = NodeRef::new();
 
+    let stream_url = if cfg!(debug_assertions) {
+	"https://kotiboksi.xyz/radio.ogg"
+    } else {
+	"/radio.ogg"
+    };
+
     let audio = view! {
         <audio node_ref=audio_ref prop:volume=move || volume() / 100.0>
-            <source src="/radio.ogg" />
+            <source src=stream_url type="audio/ogg" />
         </audio>
     };
 
@@ -33,6 +42,102 @@ fn RadioAudio(
     });
 
     audio
+}
+
+#[server(GetNowPlaying, "/api")]
+pub async fn get_now_playing() -> Result<String, ServerFnError> {
+    use reqwest;
+    use serde::Deserialize;
+
+    #[derive(Deserialize)]
+    struct Source {
+	title: String
+    }
+    #[derive(Deserialize)]
+    struct Stats {
+	source: Source
+    }
+    #[derive(Deserialize)]
+    struct Status {
+	icestats: Stats
+    }
+
+    let status_url = if cfg!(debug_assertions) {
+	"https://kotiboksi.xyz/status-json.xsl"
+    } else {
+	// icecast on server
+	"http://127.0.0.1:8000/status-json.xsl"
+    };
+
+    let status = reqwest::get(status_url)
+        .await?
+	.json::<Status>()
+	.await?;
+
+    let mut title: &str = &status.icestats.source.title;
+    if let Some(i) = title.rfind('/') {
+	title = &title[i+1..];
+    }
+    if let Some(i) = title.find(".ogg") {
+	title = &title[..i];
+    }
+
+    Ok(title.to_string())
+}
+
+#[component]
+pub fn NowPlaying(playing: ReadSignal<bool>) -> impl IntoView {
+    let UseIntervalReturn {
+        counter,
+        pause,
+        resume,
+        ..
+    } = use_interval(5000);
+
+    let (title, set_title) = signal::<Result<String, String>>(Ok("Loading...".into()));
+
+    Effect::new(move || match playing() {
+        true => resume(),
+        false => pause(),
+    });
+
+    Effect::new(move || {
+        let _tick = counter();
+
+	if !cfg!(target_arch = "wasm32") {
+	    return;
+	}
+
+	spawn_local(async move {
+	    set_title(get_now_playing().await.map_err(|e| e.to_string()));
+	});
+    });
+
+    view! {
+        <p>
+            {move || {
+                match title() {
+                    Ok(v) => {
+                        view! {
+                            "Now playing: "
+                            <em>{v}</em>
+                        }
+                            .into_any()
+                    }
+                    Err(e) => {
+                        view! {
+                            "Unable to fetch song: "
+                            <strong>{e}</strong>
+                        }
+                            .into_any()
+                    }
+                }
+            }}
+        </p>
+        <p>
+            "Your browser can sometimes be behind on playback, so the title doesn't always match up."
+        </p>
+    }
 }
 
 #[component]
@@ -77,15 +182,17 @@ pub fn Radio() -> impl IntoView {
 
             <p>"Volume: " {volume} "%"</p>
 
+            <NowPlaying playing=playing />
+
             <p>
                 "Link: "
                 <a href="https://kotiboksi.xyz/radio.ogg">"https://kotiboksi.xyz/radio.ogg"</a>
             </p>
 
             <p>
-                "Currently the radio has "
-                <a href="https://en.wikipedia.org/wiki/Module_file">mod music</a> " from the "
-                <a href="http://modarchive.org/">"mod archive"</a> ", and other random places."
+                "The radio has " <a href="https://en.wikipedia.org/wiki/Module_file">mod music</a>
+                " from the " <a href="http://modarchive.org/">"mod archive"</a>
+                ", and other random places."
             </p>
         </div>
     }

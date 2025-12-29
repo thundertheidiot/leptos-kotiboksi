@@ -61,7 +61,11 @@ strong {
 	@include font();
 }
 
-em,
+em {
+	color: $bright-blue;
+    	font-style: normal;
+}
+
 i {
 	color: $foreground;
 }
