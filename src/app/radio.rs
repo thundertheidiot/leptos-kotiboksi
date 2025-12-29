@@ -74,15 +74,7 @@ pub async fn get_now_playing() -> Result<String, ServerFnError> {
 	.json::<Status>()
 	.await?;
 
-    let mut title: &str = &status.icestats.source.title;
-    if let Some(i) = title.rfind('/') {
-	title = &title[i+1..];
-    }
-    if let Some(i) = title.find(".ogg") {
-	title = &title[..i];
-    }
-
-    Ok(title.to_string())
+    Ok(status.icestats.source.title)
 }
 
 #[component]
