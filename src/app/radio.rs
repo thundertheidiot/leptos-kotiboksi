@@ -29,6 +29,7 @@ fn RadioAudio(
         if let Some(audio) = audio_ref.get() {
             if visible() {
                 if playing() {
+                    audio.load(); // restart playback
                     let _ = audio.play();
                 } else {
                     let _ = audio.pause();
