@@ -8,7 +8,7 @@ pub fn HomePage() -> impl IntoView {
             <div class=ClassName::TEXTPART>
                 <img src="/static/img/profile.webp" class=ClassName::PROFILE />
 
-                <h1>"Hiiii :3"</h1>
+                <h1>"Hiii"</h1>
 
                 <p>"I'm thunder, welcome to my stupid website"</p>
 
